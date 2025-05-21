@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { io } from "socket.io-client";
 import axios from "axios";
+// import { Picker } from "emoji-mart";
+import EmojiPicker from "emoji-picker-react";
 import "./chat.css";
 
 const socket = io("https://chat-backend-52d6.onrender.com");
@@ -9,6 +11,7 @@ function Chat() {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [username, setUsername] = useState("");
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -51,8 +54,17 @@ function Chat() {
     });
 
     setNewMessage("");
+    setShowEmojiPicker(false);
   };
 
+  const handleEmojiClick = (emojiObject) => {
+    console.log("Selected Emoji:", emojiObject);
+    setNewMessage(newMessage + emojiObject.emoji);
+  };
+
+  const toggleEmojiPicker = () => {
+    setShowEmojiPicker((prevState) => !prevState);
+  };
   return (
     <div className="chat-container">
       <h2 className="chat-header">Chat App</h2>
@@ -84,6 +96,14 @@ function Chat() {
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
         />
         <button onClick={sendMessage}>Send</button>
+
+        <button onClick={toggleEmojiPicker}>😊</button>
+
+        {showEmojiPicker && (
+          <div className="emoji-picker">
+            <EmojiPicker onEmojiClick={handleEmojiClick} />
+          </div>
+        )}
       </div>
     </div>
   );

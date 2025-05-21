@@ -76,3 +76,38 @@
   border-radius: 20px;
   cursor: pointer;
 }
+
+
+
+/*  */
+
+/* Styling the emoji picker container */
+.emoji-picker {
+  position: absolute;
+  bottom: 60px; /* Adjust based on the input field height */
+  left: 10px;
+  z-index: 9999;
+  max-width: 300px; /* Limit max width */
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+
+.chat-input button {
+  padding: 8px 12px;
+  margin: 0 5px;
+
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  background-color: #0056b3;
+}
+
+/* Ensure the input box stays at the bottom */
+.chat-input {
+  position: relative;
+}
