@@ -29,6 +29,13 @@ function Chat() {
       setMessages((prev) => [...prev, msg]);
     });
 
+    socket.on("user joined", (username) => {
+      setMessages((prev) => [
+        ...prev,
+        { username: "System", message: `${username} has joined the chat` },
+      ]);
+    });
+
     socket.on("connect_error", (err) => {
       console.error("Socket connection error:", err);
     });
@@ -36,6 +43,7 @@ function Chat() {
     return () => {
       socket.off("chat message");
       socket.off("connect_error");
+      socket.off("user joined");
     };
   }, []);
 
