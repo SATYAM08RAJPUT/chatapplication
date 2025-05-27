@@ -4,7 +4,6 @@ import axios from "axios";
 import EmojiPicker from "emoji-picker-react";
 import "./chat.css";
 
-// ✅ Local backend
 const socket = io("https://chat-backend-52d6.onrender.com");
 
 function Chat() {
